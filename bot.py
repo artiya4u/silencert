@@ -15,7 +15,9 @@ def delete_unwanted_message(client, message):
             client.delete_messages(message.chat.id, [message.message_id])
 
     if message.text is not None and message.text.find("https://t.me/joinchat/") > -1:
-        client.delete_messages(message.chat.id, [message.message_id])
+        member = client.get_chat_member(message.chat.id, message.from_user.id)
+        if not (member.status == "creator" or member.status == "administrator"):
+            client.delete_messages(message.chat.id, [message.message_id])  # Delete none admin invitation
 
 
 app.start()

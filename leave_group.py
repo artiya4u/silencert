@@ -1,7 +1,7 @@
 from pyrogram import Client
 
 # Bot will leave all of non admin right group.
-app = Client("silencert")
+app = Client("silencert_remove_self")
 app.start()
 dialogs = app.iter_dialogs()
 me = app.get_me()

@@ -1,10 +1,11 @@
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 app = Client("silencert")
 
 
-@app.on_message(Filters.group)
+@app.on_message(filters.group)
 def delete_unwanted_message(client, message):
+    print(message)
     unwanted_messages = [
         message.new_chat_members,
         message.left_chat_member,
@@ -20,5 +21,4 @@ def delete_unwanted_message(client, message):
             client.delete_messages(message.chat.id, [message.message_id])  # Delete none admin invitation
 
 
-app.start()
-app.idle()
+app.run()

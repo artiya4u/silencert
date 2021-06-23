@@ -1,5 +1,6 @@
 from pyrogram import Client
 
+min_member_count = 200
 # Bot will leave all of non admin right group.
 app = Client("silencert_remove_self")
 app.start()
@@ -11,7 +12,7 @@ for d in dialogs:
         if d.chat.is_scam:
             print("LEAVE - SCAM", d.chat.title)
             app.leave_chat(d.chat.id)
-        elif d.chat.members_count < 20:
+        elif d.chat.members_count < min_member_count:
             print("LEAVE - NOT ENOUGH USERS", d.chat.title)
             app.leave_chat(d.chat.id)
         elif member.status != "administrator":
